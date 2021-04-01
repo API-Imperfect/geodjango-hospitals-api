@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+   api:
+      build:
+         context: .
+         dockerfile: Dockerfile.dev
+      command: python3 manage.py runserver 0.0.0.0:8000
+      volumes:
+         - .:/app
+      ports:
+         - 8000:8000
+      env_file:
+         - .env
+      restart: "on-failure"
+      depends_on:
+         - postgres-db
+      networks:
+         - hospital-api
+
+   postgres-db:
+      image: kartoza/postgis:12.0
+      ports:
+         - 5432:5432
+      volumes:
+         - postgres_data:/var/lib/postgresql
+      environment:
+         - POSTGRES_USER=${POSTGRES_USER}
+         - POSTGRES_PASS=${POSTGRES_PASS}
+         - POSTGRES_DBNAME=${POSTGRES_DBNAME}
+      restart: "on-failure"
+      networks:
+         - hospital-api
+
+networks:
+   hospital-api:
+      driver: bridge
+
+volumes:
+   postgres_data:
