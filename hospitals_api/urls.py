@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("hospitals.urls"))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("hospitals.urls")),
+    path("", include("boundaries.urls")),
+]
 
 admin.site.site_header = "Hospitals Admin"
 admin.site.site_title = "Rwanda GIS Admin Portal"
