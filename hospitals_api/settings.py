@@ -46,7 +46,7 @@ DJANGO_APPS = [
     "django.contrib.gis",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", "rest_framework_gis", "leaflet"]
+THIRD_PARTY_APPS = ["rest_framework", "rest_framework_gis", "leaflet", "django_filters"]
 
 PROJECTY_APPS = ["hospitals.apps.HospitalsConfig", "boundaries.apps.BoundariesConfig"]
 
